@@ -1,54 +1,70 @@
-import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
-import { useStaticQuery, graphql } from "gatsby"
-import SingleOfficeInfo from '../../../components/office-info'
-import { ContactUsPageArea } from './style'
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { useStaticQuery, graphql } from 'gatsby';
+// import SingleOfficeInfo from '../../../components/office-info';
+import PropTypes from 'prop-types';
+import { ContactUsPageArea } from './style';
 
 const OurOffices = () => {
-    const officeinfoQuery = useStaticQuery(graphql`
-        query OfficeinfoQuery { 
-            contactUsJson(id: {eq: "contact-us-area"}) {
-                id
-                officeWrap {
-                    addresText
-                    contactEmail
-                    contactNumber
-                    id
-                    officeName
-                    image1 {
-                        childImageSharp {
-                            gatsbyImageData
-                        }
-                    }
-                }
-            }
+  const data = useStaticQuery(graphql`
+    query HeaderQuery {
+      site {
+        siteMetadata {
+          title
         }
-    `)
+      }
+    }
+  `);
 
-    const {officeWrap} = officeinfoQuery.contactUsJson;
+  console.log('datadatadata', data);
 
-    return (
-        <ContactUsPageArea>
-            <Container>
-                <Row className="gx-5">
-                    {officeWrap && officeWrap.map((item, i)=>{
-                        return (
-                            <Col lg={4} md={6} key={i}>
-                                <SingleOfficeInfo
-                                    image={item.image1}
-                                    officeName={item.officeName}
-                                    contactNumber={item.contactNumber}
-                                    contactEmail={item.contactEmail}
-                                    addresText={item.addresText}
-                                />
-                            </Col>
-                        )
-                    })}
-                    
-                </Row>
-            </Container>
-        </ContactUsPageArea>
-    )
-}
+  // const officeinfoQuery = useStaticQuery(graphql`
+  //   query OfficeinfoQuery {
+  //     contactUsJson(id: { eq: "contact-us-area" }) {
+  //       id
+  //       officeWrap {
+  //         addresText
+  //         contactEmail
+  //         contactNumber
+  //         id
+  //         officeName
+  //         image1 {
+  //           childImageSharp {
+  //             gatsbyImageData
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
+  //
+  // console.log('officeinfoQuery', officeinfoQuery);
+  //
+  // const { officeWrap } = officeinfoQuery.contactUsJson;
 
-export default OurOffices
+  return (
+    <ContactUsPageArea>
+      <Container>
+        <h1>123</h1>
+        {/*<Row className="gx-5">*/}
+        {/*  {officeWrap &&*/}
+        {/*    officeWrap.map((item, i) => {*/}
+        {/*      return (*/}
+        {/*        <Col lg={4} md={6} key={i}>*/}
+        {/*          <SingleOfficeInfo*/}
+        {/*            image={item.image1}*/}
+        {/*            officeName={item.officeName}*/}
+        {/*            contactNumber={item.contactNumber}*/}
+        {/*            contactEmail={item.contactEmail}*/}
+        {/*            addresText={item.addresText}*/}
+        {/*          />*/}
+        {/*        </Col>*/}
+        {/*      );*/}
+        {/*    })}*/}
+        {/*</Row>*/}
+      </Container>
+    </ContactUsPageArea>
+  );
+};
+
+export default OurOffices;
